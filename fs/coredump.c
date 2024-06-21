@@ -522,16 +522,16 @@ static bool dump_interrupted(void)
 	 */
 #ifdef CONFIG_MTK_AVOID_TRUNCATE_COREDUMP
 	/* avoid coredump truncated */
-	int ret = signal_pending(current);
+	int ret = fatal_signal_pending(current) || freezing(current);
 
 	if (ret) {
 		pr_info("%s: clear sig pending flag\n", __func__);
 		clear_thread_flag(TIF_SIGPENDING);
-		ret = signal_pending(current);
+		ret = fatal_signal_pending(current) || freezing(current);
 	}
 	return ret;
 #else
-	return signal_pending(current);
+	return fatal_signal_pending(current) || freezing(current);
 #endif
 }
 
