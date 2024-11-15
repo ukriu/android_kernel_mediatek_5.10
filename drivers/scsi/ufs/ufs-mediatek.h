@@ -15,10 +15,11 @@
 #include "ufsfeature.h"
 #endif
 
-/* UFSHCD error handling flags */
+/* UFSHCD error handling flags 
 enum {
 	UFSHCD_EH_IN_PROGRESS = (1 << 0),
 };
+*/
 
 #define ufshcd_eh_in_progress(h) \
 	((h)->eh_flags & UFSHCD_EH_IN_PROGRESS)
